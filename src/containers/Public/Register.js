@@ -1,61 +1,70 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button, InputForm } from '../../components';
 import validate from '../../untils/validate';
 
-const Login = () => {
+const Register = () => {
     const [data, setData] = useState({
+        name: '',
         phone: '',
         password: '',
     });
     const [inValidFields, setInValidFields] = useState([]);
 
     const handleSubmit = () => {
-        let invalids = validate(data, setInValidFields);
-        console.log(invalids);
+        let invalid = validate(data, setInValidFields);
+        console.log(invalid);
     };
 
     return (
         <div className="bg-white w-[600px] p-[30px] pb-[100px] rounded-lg border border-solid border-[#dedede] shadow-sm">
-            <h3 className="font-semibold text-3xl mb-3 text-text">Đăng nhập</h3>
+            <h3 className="font-semibold text-3xl mb-3 text-text">Đăng kí</h3>
             <div className="w-full">
                 <InputForm
+                    label={'HỌ TÊN'}
+                    type={'name'}
+                    value={data.name}
+                    setValue={setData}
+                    inValidFields={inValidFields}
+                    setInValidFields={setInValidFields}
+                />
+                <InputForm
                     label={'SỐ ĐIỆN THOẠI'}
+                    type={'phone'}
                     value={data.phone}
                     setValue={setData}
-                    type="phone"
                     inValidFields={inValidFields}
                     setInValidFields={setInValidFields}
                 />
                 <InputForm
                     label={'MẬT KHẨU'}
+                    type={'password'}
                     value={data.password}
                     setValue={setData}
-                    type="password"
                     inValidFields={inValidFields}
                     setInValidFields={setInValidFields}
                 />
             </div>
             <Button
-                text={'Đăng nhập'}
+                text={'Đăng kí'}
                 bgColor="bg-secondary1"
                 textColor="text-white"
                 fullWith
                 height="h-[45px]"
                 onClick={handleSubmit}
             />
-            <div className="flex justify-between mt-[30px]">
-                <small className="text-[blue] text-sm hover:text-[#f60] cursor-pointer ">
-                    Bạn quên mật khẩu ?
+            <div className="mt-[30px]">
+                <small className=" text-sm">
+                    Bạn đã có tài khoản?
+                    <Link to={'/login'}>
+                        <span className="ml-1 inline-block text-blue-500 hover:underline cursor-pointer">
+                            Đăng nhập ngay
+                        </span>
+                    </Link>
                 </small>
-                <Link to={'/register'}>
-                    <small className="text-[blue] text-sm hover:text-[#f60] cursor-pointer ">
-                        Tạo tài khoản mới
-                    </small>
-                </Link>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default Register;

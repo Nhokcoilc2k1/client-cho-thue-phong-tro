@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { Home, Login } from './containers/Public';
+import { Home, Login, Register } from './containers/Public';
 import { path } from './untils/contains';
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
             <Routes>
                 <Route path={path.HOME} element={<Home />}>
                     <Route path={path.LOGIN} element={<Login />} />
+                    <Route path={path.REGISTER} element={<Register />} />
                 </Route>
             </Routes>
         </div>
