@@ -1,20 +1,11 @@
 import { memo } from 'react';
 
-const Button = ({
-    text,
-    textColor,
-    bgColor,
-    fullWith,
-    height,
-    IconLeft,
-    IconRight,
-    onClick,
-}) => {
+const Button = ({ text, textColor, bgColor, fullWith, height, IconLeft, IconRight, onClick }) => {
     return (
         <button
             className={`py-2 px-4 ${textColor} ${bgColor} ${
                 fullWith && 'w-full'
-            } ${height} hover:underline  outline-none rounded-md flex items-center justify-center leading-5 text-sm font-normal cursor-pointer `}
+            } ${height} hover:underline h-36[px] outline-none rounded-md flex items-center justify-center font-normal cursor-pointer `}
             onClick={onClick}
         >
             {IconLeft && (
@@ -22,7 +13,7 @@ const Button = ({
                     <IconLeft />
                 </span>
             )}
-            {text}
+            <span className="text-sm relative -mb-[2px]">{text}</span>
             {IconRight && (
                 <span className="ml-[4px] text-lg">
                     <IconRight />

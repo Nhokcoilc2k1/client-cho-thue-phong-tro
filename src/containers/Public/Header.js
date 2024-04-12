@@ -21,7 +21,7 @@ function Header() {
     );
 
     return (
-        <div className="w-1120 flex items-center justify-between">
+        <div className=" w-1120 flex items-center justify-between">
             <Link to={'/'}>
                 <img src={images.logo} alt="logo" className="w-[240px] h-[70px] object-contain" />
             </Link>
