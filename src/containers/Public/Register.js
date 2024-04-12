@@ -22,7 +22,7 @@ const Register = () => {
             <div className="w-full">
                 <InputForm
                     label={'HỌ TÊN'}
-                    type={'name'}
+                    name={'name'}
                     value={data.name}
                     setValue={setData}
                     inValidFields={inValidFields}
@@ -30,7 +30,7 @@ const Register = () => {
                 />
                 <InputForm
                     label={'SỐ ĐIỆN THOẠI'}
-                    type={'phone'}
+                    name={'phone'}
                     value={data.phone}
                     setValue={setData}
                     inValidFields={inValidFields}
@@ -38,6 +38,7 @@ const Register = () => {
                 />
                 <InputForm
                     label={'MẬT KHẨU'}
+                    name={'password'}
                     type={'password'}
                     value={data.password}
                     setValue={setData}

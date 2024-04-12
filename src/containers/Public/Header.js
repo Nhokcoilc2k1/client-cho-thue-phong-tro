@@ -5,10 +5,11 @@ import icons from '../../untils/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { path } from '../../untils/contains';
 
-const { IoMdHeartEmpty, FiUserPlus, IoIosLogIn, GoPlusCircle } = icons;
+const { IoMdHeartEmpty, FiUserPlus, IoIosLogIn, GoPlusCircle, IoIosLogOut } = icons;
 
 function Header() {
     const navigate = useNavigate();
+    const userInfo = false;
 
     const goLogin = useCallback(
         (flag) => {
@@ -22,33 +23,43 @@ function Header() {
     return (
         <div className="w-1120 flex items-center justify-between">
             <Link to={'/'}>
-                <img
-                    src={images.logo}
-                    alt="logo"
-                    className="w-[240px] h-[70px] object-contain"
-                />
+                <img src={images.logo} alt="logo" className="w-[240px] h-[70px] object-contain" />
             </Link>
             <div className="flex items-center gap-1">
-                <Button
-                    text="Yêu thích"
-                    textColor="text-white"
-                    bgColor="bg-secondary1"
-                    IconLeft={IoMdHeartEmpty}
-                />
-                <Button
-                    text="Đăng nhập"
-                    textColor="text-white"
-                    bgColor="bg-secondary1"
-                    IconLeft={FiUserPlus}
-                    onClick={() => goLogin(1)}
-                />
-                <Button
-                    text="Đăng kí"
-                    textColor="text-white"
-                    bgColor="bg-secondary1"
-                    IconLeft={IoIosLogIn}
-                    onClick={() => goLogin(2)}
-                />
+                {userInfo ? (
+                    <>
+                        <span className="mr-1 text-text text-sm">Tên !</span>
+                        <Button
+                            text="Đăng xuất"
+                            textColor="text-white"
+                            bgColor="bg-red-700"
+                            IconRight={IoIosLogOut}
+                        />
+                    </>
+                ) : (
+                    <>
+                        <Button
+                            text="Yêu thích"
+                            textColor="text-white"
+                            bgColor="bg-secondary1"
+                            IconLeft={IoMdHeartEmpty}
+                        />
+                        <Button
+                            text="Đăng nhập"
+                            textColor="text-white"
+                            bgColor="bg-secondary1"
+                            IconLeft={FiUserPlus}
+                            onClick={() => goLogin(1)}
+                        />
+                        <Button
+                            text="Đăng kí"
+                            textColor="text-white"
+                            bgColor="bg-secondary1"
+                            IconLeft={IoIosLogIn}
+                            onClick={() => goLogin(2)}
+                        />
+                    </>
+                )}
                 <Button
                     text="Đăng tin miễn phí"
                     textColor="text-white"

@@ -23,7 +23,7 @@ const Login = () => {
                     label={'SỐ ĐIỆN THOẠI'}
                     value={data.phone}
                     setValue={setData}
-                    type="phone"
+                    name="phone"
                     inValidFields={inValidFields}
                     setInValidFields={setInValidFields}
                 />
@@ -31,7 +31,8 @@ const Login = () => {
                     label={'MẬT KHẨU'}
                     value={data.password}
                     setValue={setData}
-                    type="password"
+                    name="password"
+                    type={'password'}
                     inValidFields={inValidFields}
                     setInValidFields={setInValidFields}
                 />
