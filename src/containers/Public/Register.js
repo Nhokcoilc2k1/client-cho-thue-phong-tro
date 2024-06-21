@@ -17,7 +17,7 @@ const Register = () => {
     };
 
     return (
-        <div className="bg-white w-[600px] p-[30px] pb-[100px] rounded-lg border border-solid border-[#dedede] shadow-sm">
+        <div className="bg-white w-[600px] p-[30px] pb-[100px] mt-4 rounded-lg border border-solid border-[#dedede] shadow-sm">
             <h3 className="font-semibold text-3xl mb-3 text-text">Đăng kí</h3>
             <div className="w-full">
                 <InputForm
@@ -47,11 +47,8 @@ const Register = () => {
                 />
             </div>
             <Button
-                text={'Đăng kí'}
-                bgColor="bg-secondary1"
-                textColor="text-white"
-                fullWith
-                height="h-[45px]"
+                text="Đăng kí"
+                className="h-[45px] w-full hover:underline bg-secondary1 text-white"
                 onClick={handleSubmit}
             />
             <div className="mt-[30px]">

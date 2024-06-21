@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { formatVietnameseToString } from '../../untils/contains';
+import { formatVietnameseToString } from '../../untils/Common/formatVietnameseToString';
 
 const nav = [
     { name: 'Cho thuê phòng trọ', path: 'chothue' },
@@ -14,8 +14,8 @@ const active = 'hover:bg-secondary2 h-full flex items-center px-4 bg-secondary2 
 
 const Navigation = () => {
     return (
-        <div className="w-screen h-[40px] flex justify-center items-center bg-secondary1 text-white text-sm">
-            <div className="w-1120 h-[40px] flex items-center text-sm font-medium ">
+        <div className="hidden md:flex w-screen h-[40px]  justify-center items-center bg-secondary1 text-white text-sm ">
+            <div className="h-[40px] flex items-center text-sm font-medium w-screen lg:w-984 xl:w-1120">
                 <NavLink to={'/'} className={({ isActive }) => (isActive ? active : notActive)}>
                     Trang chủ
                 </NavLink>

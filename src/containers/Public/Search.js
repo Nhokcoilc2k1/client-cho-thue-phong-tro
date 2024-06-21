@@ -6,7 +6,7 @@ const { CiLocationOn, LiaCropSolid, MdHouseSiding, LiaMoneyBillWaveSolid, IoSear
 
 const Search = () => {
     return (
-        <div className=" flex min-h-[55px] w-full p-[10px] items-center justify-between gap-2 rounded-lg bg-bgSearch">
+        <div className="flex flex-col bg-primary2 w-full mt-2 md:flex-row md:bg-bgSearch min-h-[55px] lg:w-984 xl:w-1120 p-[10px] items-center md:justify-between gap-2 md:rounded-lg ">
             <SearchItem
                 text={'Phòng trọ, nhà trọ'}
                 IconRight={<RiDeleteBack2Line />}
@@ -17,7 +17,7 @@ const Search = () => {
             <SearchItem text={'Toàn quốc'} IconRight={<GrNext />} IconLeft={<CiLocationOn />} />
             <SearchItem text={'Chọn giá'} IconRight={<GrNext />} IconLeft={<LiaMoneyBillWaveSolid />} />
             <SearchItem text={'Chọn diện tích'} IconRight={<GrNext />} IconLeft={<LiaCropSolid />} />
-            <button className="basis-1/5 h-[34px] flex items-center justify-center gap-1 bg-secondary1 py-2 px-4 rounded text-white text-sm font-semibold">
+            <button className="w-[100%] bg-bgSearch text-text md:basis-1/5 md:bg-secondary1 md:text-white h-[34px] flex items-center justify-center gap-1 py-2 px-4 rounded  text-sm font-semibold">
                 <span className="text-lg">
                     <IoSearch />
                 </span>

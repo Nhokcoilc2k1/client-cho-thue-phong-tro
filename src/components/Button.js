@@ -1,11 +1,9 @@
 import { memo } from 'react';
 
-const Button = ({ text, textColor, bgColor, fullWith, height, IconLeft, IconRight, onClick }) => {
+const Button = ({ text, className, IconLeft, IconRight, onClick }) => {
     return (
         <button
-            className={`py-2 px-4 ${textColor} ${bgColor} ${
-                fullWith && 'w-full'
-            } ${height} hover:underline h-36[px] outline-none rounded-md flex items-center justify-center font-normal cursor-pointer `}
+            className={` ${className} outline-none rounded-md flex items-center justify-center cursor-pointer `}
             onClick={onClick}
         >
             {IconLeft && (

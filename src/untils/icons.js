@@ -13,7 +13,8 @@ import { LiaMoneyBillWaveSolid } from 'react-icons/lia';
 import { GoSearch } from 'react-icons/go';
 import { IoSearch } from 'react-icons/io5';
 import { RiDeleteBack2Line } from 'react-icons/ri';
-import { GrNext } from "react-icons/gr";
+import { GrNext } from 'react-icons/gr';
+import { IoMdMenu } from 'react-icons/io';
 
 const icons = {
     IoMdHeartEmpty,
@@ -32,6 +33,7 @@ const icons = {
     IoSearch,
     RiDeleteBack2Line,
     GrNext,
+    IoMdMenu,
 };
 
 export default icons;
