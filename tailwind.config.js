@@ -20,6 +20,9 @@ module.exports = {
                 secondary1: '#1266dd',
                 secondary2: '#f73859',
                 bgSearch: '#febb02',
+                itemBg: '#fff9f3',
+                'overlay-30': 'rgba(0, 0, 0, 0.3)',
+                'overlay-50': 'rgba(0, 0, 0, 0.5)',
             },
             maxWidth: {
                 600: '600px',
@@ -30,10 +33,15 @@ module.exports = {
                 primary2: '#1266dd',
                 icon: '#777',
                 hv: '#f60',
+                itemText: '#e23427',
+                priceText: '#16c784',
             },
             boxShadow: {
                 hv1: '0 0 10px 1px rgb(0 0 0 / 10%)',
                 hv2: '0 0 10px 10px rgb(0 0 0 / 5%)',
+            },
+            borderColor: {
+                borderItem: '#e23427',
             },
         },
     },

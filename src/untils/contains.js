@@ -31,3 +31,92 @@ export const localtion = [
         image: 'https://phongtro123.com/images/location_dn.jpg',
     },
 ];
+
+export const filterPrice = [
+    {
+        id: 1,
+        name: 'Dưới 1 triệu',
+    },
+    {
+        id: 2,
+        name: 'Từ 1 - 2 triệu',
+    },
+    {
+        id: 3,
+        name: 'Từ 2 - 3 triệu',
+    },
+    {
+        id: 4,
+        name: 'Từ 3 - 5 triệu',
+    },
+    {
+        id: 5,
+        name: 'Từ 5 - 7 triệu',
+    },
+    {
+        id: 6,
+        name: 'Từ 7 - 10 triệu',
+    },
+    {
+        id: 7,
+        name: 'Từ 10 - 15 triệu',
+    },
+    {
+        id: 8,
+        name: 'Trên 15 triệu',
+    },
+];
+
+export const filterAre = [
+    {
+        id: 1,
+        name: 'Dưới 20 m2',
+    },
+    {
+        id: 2,
+        name: 'Từ 20 - 30 m2',
+    },
+    {
+        id: 3,
+        name: 'Từ 30 - 50 m2',
+    },
+    {
+        id: 4,
+        name: 'Từ 50 - 70 m2',
+    },
+    {
+        id: 5,
+        name: 'Từ 70 - 90 m2',
+    },
+    {
+        id: 6,
+        name: 'Trên 90 m2',
+    },
+];
+
+export const categorySidebar = [
+    {
+        id: 1,
+        name: 'Cho thuê phòng trọ',
+    },
+    {
+        id: 2,
+        name: 'Cho thuê nhà nguyên căn',
+    },
+    {
+        id: 3,
+        name: 'Cho thuê căn hộ',
+        subItem: [
+            { id: 1, name: 'Cho thuê căn hộ mini' },
+            { id: 2, name: 'Cho thuê căn hộ dịch vụ' },
+        ],
+    },
+    {
+        id: 4,
+        name: 'Cho thuê mặt bằng',
+    },
+    {
+        id: 5,
+        name: 'Tìm người ở ghép',
+    },
+];

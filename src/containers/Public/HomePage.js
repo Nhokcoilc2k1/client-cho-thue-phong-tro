@@ -1,6 +1,6 @@
 import React from 'react';
 import { text } from '../../untils/contains';
-import { Province } from '../../components';
+import { ItemSidebar, Province } from '../../components';
 import List from './List';
 import { Search } from '../Public';
 
@@ -19,7 +19,11 @@ const HomePage = () => {
                 <div className=" w-full lg:w-2/3">
                     <List />
                 </div>
-                <div className="hidden border border-gray-500 lg:block lg:w-1/3">Sidebar</div>
+                <div className="hidden lg:block lg:w-1/3">
+                    <ItemSidebar isDouble title="Xem theo giá" />
+                    <ItemSidebar isDouble title="Xem theo diện tích" />
+                    <ItemSidebar title="Danh mục cho thuê" />
+                </div>
             </div>
         </div>
     );

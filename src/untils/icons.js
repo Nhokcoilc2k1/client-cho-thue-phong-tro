@@ -15,6 +15,8 @@ import { IoSearch } from 'react-icons/io5';
 import { RiDeleteBack2Line } from 'react-icons/ri';
 import { GrNext } from 'react-icons/gr';
 import { IoMdMenu } from 'react-icons/io';
+import { MdOutlineStarPurple500 } from 'react-icons/md';
+import { PiHeartStraightFill, PiHeartStraightLight } from 'react-icons/pi';
 
 const icons = {
     IoMdHeartEmpty,
@@ -34,6 +36,9 @@ const icons = {
     RiDeleteBack2Line,
     GrNext,
     IoMdMenu,
+    MdOutlineStarPurple500,
+    PiHeartStraightFill,
+    PiHeartStraightLight,
 };
 
 export default icons;
