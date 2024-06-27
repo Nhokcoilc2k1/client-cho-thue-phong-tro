@@ -6,10 +6,10 @@ const { MdOutlineStarPurple500, PiHeartStraightFill, PiHeartStraightLight } = ic
 const Item = () => {
     const [isHoverHeart, setIsHoverHeart] = useState(false);
     return (
-        <div className="flex gap-3 items-start bg-itemBg border-t border-borderItem -mx-5 px-5 py-[15px]">
-            <a href="/" className="w-2/5 block relative">
+        <div className="flex flex-col sm:flex-row gap-3 items-start bg-itemBg border-t border-borderItem -mx-5 px-5 py-[15px]">
+            <a href="/" className="w-full sm:w-2/5 block relative">
                 <img
-                    className="w-[280px] h-[240px] object-cover rounded-sm"
+                    className="w-full h-[240px] lg:w-[280px] md:h-[240px] object-cover rounded-sm"
                     alt="ảnh phòng trọ"
                     src="https://pt123.cdn.static123.com/images/thumbs/900x600/fit/2024/06/21/img-9900_1718939812.jpg"
                 />
@@ -24,7 +24,7 @@ const Item = () => {
                     {isHoverHeart ? <PiHeartStraightFill size="28" color="red" /> : <PiHeartStraightLight size="28" />}
                 </span>
             </a>
-            <div className="w-3/5 ">
+            <div className="w-full sm:w-3/5 ">
                 <a href="/" className="uppercase block hover:underline mb-[10px] text-itemText font-semibold text-sm">
                     <span className="">
                         <MdOutlineStarPurple500 className="star-item" size="18" color="#ffd454" />
@@ -49,7 +49,7 @@ const Item = () => {
                     Địa chỉ: Ngõ 81 Xã Đàn, thang máy, phòng tầng 2, nhà để xe free rộng rãi (ban công có cửa, pccc đảm
                     bảo).Giá 5tr (có thương lượng), điện 3k5, nước 30k,…
                 </p>
-                <div className="after:clear-both mt-2.5">
+                <div className="after:clear-both mt-3.5">
                     <div className="inline-flex items-center mr-4">
                         <img
                             src="https://magicbookofrecord.com/wp-content/uploads/2021/01/anon-avatar-300x300.png"

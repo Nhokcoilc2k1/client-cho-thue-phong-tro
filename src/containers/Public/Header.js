@@ -21,7 +21,7 @@ function Header() {
     );
 
     return (
-        <div className="flex items-center justify-between bg-white w-screen md:w-screen lg:w-984 xl:w-1120 ">
+        <div className="flex items-center justify-between bg-primary w-full md:w-full lg:w-984 xl:w-1120 ">
             <Link to={'/'} className="ml-4 lg:ml-0">
                 <img
                     src={images.logo}
@@ -32,7 +32,7 @@ function Header() {
             <div className="flex items-center p-2 cursor-pointer text-2xl  mr-3 md:hidden">
                 <IoMdMenu />
             </div>
-            <div className="hidden mr-4 md:flex md:items-center md:gap-1">
+            <div className="hidden mr-4 md:mr-0 md:flex md:items-center md:gap-1">
                 {userInfo ? (
                     <>
                         <span className="mr-1 text-text text-sm">Tên !</span>
@@ -42,18 +42,18 @@ function Header() {
                     <>
                         <Button
                             text="Yêu thích"
-                            className="h-36[px] py-2 px-4 text-white bg-secondary1 hover:underline"
+                            className=" py-2 px-4 text-white bg-secondary1 hover:underline"
                             IconLeft={IoMdHeartEmpty}
                         />
                         <Button
                             text="Đăng nhập"
-                            className="h-36[px] py-2 px-4 text-white bg-secondary1 hover:underline"
+                            className=" py-2 px-4 text-white bg-secondary1 hover:underline"
                             IconLeft={FiUserPlus}
                             onClick={() => goLogin(1)}
                         />
                         <Button
                             text="Đăng kí"
-                            className="h-36[px] py-2 px-4 text-white bg-secondary1 hover:underline"
+                            className=" py-2 px-4 text-white bg-secondary1 hover:underline"
                             IconLeft={IoIosLogIn}
                             onClick={() => goLogin(2)}
                         />
@@ -61,10 +61,7 @@ function Header() {
                 )}
                 <Button
                     text="Đăng tin miễn phí"
-                    className="h-36[px] py-2 px-4 text-white bg-secondary2 hover:underline "
-                    // textColor="text-white"
-                    // bgColor="bg-secondary2"
-                    // hover="hover:underline"
+                    className=" py-2 px-4 text-white bg-secondary2 hover:underline "
                     IconRight={GoPlusCircle}
                 />
             </div>

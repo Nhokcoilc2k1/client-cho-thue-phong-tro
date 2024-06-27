@@ -14,8 +14,8 @@ const active = 'hover:bg-secondary2 h-full flex items-center px-4 bg-secondary2 
 
 const Navigation = () => {
     return (
-        <div className="hidden md:flex w-screen h-[40px]  justify-center items-center bg-secondary1 text-white text-sm ">
-            <div className="h-[40px] flex items-center text-sm font-medium w-screen lg:w-984 xl:w-1120">
+        <div className="hidden md:flex w-full h-[40px]  justify-center items-center bg-secondary1 text-white text-sm ">
+            <div className="h-[40px] flex items-center text-sm font-medium w-full lg:w-984 xl:w-1120">
                 <NavLink to={'/'} className={({ isActive }) => (isActive ? active : notActive)}>
                     Trang chủ
                 </NavLink>

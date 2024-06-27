@@ -3,7 +3,7 @@ import { Button, Item } from '../../components';
 
 const List = () => {
     return (
-        <div className="w-full p-5 rounded-md border-[#dcdbdb] border bg-white">
+        <div className="w-full p-5 mb-5 rounded-md border-[#dcdbdb] border bg-white">
             <div className="flex justify-between mb-[15px]">
                 <h4 className="text-lg font-semibold">Danh sách tin đăng</h4>
                 <span>Cập nhật ngày</span>

@@ -7,13 +7,13 @@ const Button = ({ text, className, IconLeft, IconRight, onClick }) => {
             onClick={onClick}
         >
             {IconLeft && (
-                <span className="mr-[4px] text-lg">
+                <span className="mr-[4px] relative -mt-[1px] text-lg">
                     <IconLeft />
                 </span>
             )}
-            <span className="text-sm relative -mb-[2px]">{text}</span>
+            <span className="text-sm ">{text}</span>
             {IconRight && (
-                <span className="ml-[4px] text-lg">
+                <span className="ml-[4px] relative -mt-[1px] text-lg">
                     <IconRight />
                 </span>
             )}

@@ -17,7 +17,7 @@ const ItemSidebar = ({ title, isDouble }) => {
         return formatContent;
     };
     return (
-        <div className="p-5 mb-5 bg-white rounded-lg border border-[#dcdbdb]">
+        <div className="p-5 mb-5 bg-white rounded-lg border border-borderContent">
             <h4 className="text-text text-lg font-semibold mb-3">{title}</h4>
             {!isDouble && (
                 <>

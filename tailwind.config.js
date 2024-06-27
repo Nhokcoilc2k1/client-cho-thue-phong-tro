@@ -1,3 +1,5 @@
+const { textContact } = require('./src/untils/dataContact');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ['./src/**/*.{html,js}', './public/index.html'],
@@ -35,6 +37,9 @@ module.exports = {
                 hv: '#f60',
                 itemText: '#e23427',
                 priceText: '#16c784',
+                textContact: '#233762',
+                textSitem: '#055699',
+                textTime: '#aaa',
             },
             boxShadow: {
                 hv1: '0 0 10px 1px rgb(0 0 0 / 10%)',
@@ -42,6 +47,7 @@ module.exports = {
             },
             borderColor: {
                 borderItem: '#e23427',
+                borderContent: '#dcdbdb',
             },
         },
     },

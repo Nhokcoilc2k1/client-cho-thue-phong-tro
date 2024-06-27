@@ -13,10 +13,11 @@ import { path } from './untils/contains';
 
 function App() {
     return (
-        <div className="h-screen w-screen bg-primary">
+        <div className="h-full w-screen bg-primary">
             <Routes>
                 <Route path={path.HOME} element={<Home />}>
                     <Route path="*" element={<HomePage />} />
+                    <Route path={path.HOME__PAGE} element={<HomePage />} />
                     <Route path={path.LOGIN} element={<Login />} />
                     <Route path={path.REGISTER} element={<Register />} />
                     <Route path={path.CHO_THUE_PHONG_TRO} element={<RentalHouse />} />

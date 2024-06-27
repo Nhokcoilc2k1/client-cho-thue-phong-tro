@@ -17,6 +17,8 @@ import { GrNext } from 'react-icons/gr';
 import { IoMdMenu } from 'react-icons/io';
 import { MdOutlineStarPurple500 } from 'react-icons/md';
 import { PiHeartStraightFill, PiHeartStraightLight } from 'react-icons/pi';
+import { FaAnglesLeft, FaAnglesRight, FaPhone } from 'react-icons/fa6';
+import { SiZalo } from 'react-icons/si';
 
 const icons = {
     IoMdHeartEmpty,
@@ -39,6 +41,10 @@ const icons = {
     MdOutlineStarPurple500,
     PiHeartStraightFill,
     PiHeartStraightLight,
+    FaAnglesLeft,
+    FaAnglesRight,
+    FaPhone,
+    SiZalo,
 };
 
 export default icons;

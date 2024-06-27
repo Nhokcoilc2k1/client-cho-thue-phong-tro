@@ -4,7 +4,7 @@ import { ProvinceBtn } from '../components';
 
 const Province = () => {
     return (
-        <div>
+        <div className="px-3 sm:px-0">
             <p className="text-center text-lg font-semibold text-text">Khu vực nổi bật</p>
             <div className="flex gap-5 justify-center mt-3 ">
                 {localtion.map((el) => {
