@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import {
+    DetailPost,
     Home,
     HomePage,
     Login,
@@ -24,6 +25,7 @@ function App() {
                     <Route path={path.CHO_THUE_CAN_HO} element={<RentalApartment />} />
                     <Route path={path.CHO_THUE_MAT_BANG} element={<RentalSpace />} />
                     <Route path={path.NHA_CHO_THUE} element={<RentalRoom />} />
+                    <Route path={path.DETAIL_POST_TITLE_POSTID} element={<DetailPost />} />
                 </Route>
             </Routes>
         </div>

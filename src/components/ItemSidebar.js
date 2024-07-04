@@ -1,6 +1,8 @@
 import React from 'react';
 import icons from '../untils/icons';
-import { filterPrice, filterAre, categorySidebar } from '../untils/contains';
+import { formatVietnameseToString } from '../untils/Common/formatVietnameseToString';
+import { filterPrice, categorySidebar } from '../untils/contains';
+import { Link } from 'react-router-dom';
 
 const { MdNavigateNext } = icons;
 
@@ -25,25 +27,32 @@ const ItemSidebar = ({ title, isDouble }) => {
                         return (
                             <div key={index}>
                                 {!el.subItem && (
-                                    <div className="flex gap-1 items-center text-sm text-text py-1.5 border-b border-dotted hover:text-hv cursor-pointer">
+                                    <Link
+                                        to={`${formatVietnameseToString(el.name)}`}
+                                        className="flex gap-1 items-center text-sm text-text py-1.5 border-b border-dotted hover:text-hv cursor-pointer"
+                                    >
                                         <MdNavigateNext size="18" color="#999" />
                                         <p>{el.name}</p>
-                                    </div>
+                                    </Link>
                                 )}
                                 {el.subItem && (
                                     <div>
-                                        <div className="flex gap-1 items-center text-sm text-text py-1.5 border-b border-dotted hover:text-hv cursor-pointer">
+                                        <Link
+                                            to={`${formatVietnameseToString(el.name)}`}
+                                            className="flex gap-1 items-center text-sm text-text py-1.5 border-b border-dotted hover:text-hv cursor-pointer"
+                                        >
                                             <MdNavigateNext size="18" color="#999" />
                                             <p>{el.name}</p>
-                                        </div>
+                                        </Link>
                                         {el.subItem.map((item) => (
-                                            <div
+                                            <Link
+                                                to={`${formatVietnameseToString(item.name)}`}
                                                 key={item.id}
                                                 className="flex gap-1 items-center text-sm text-text py-1.5 ml-4 border-b border-dotted hover:text-hv cursor-pointer"
                                             >
                                                 <MdNavigateNext size="18" color="#999" />
                                                 <p>{item.name}</p>
-                                            </div>
+                                            </Link>
                                         ))}
                                     </div>
                                 )}

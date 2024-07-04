@@ -1,13 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { formatVietnameseToString } from '../../untils/Common/formatVietnameseToString';
-
-const nav = [
-    { name: 'Cho thuê phòng trọ', path: 'chothue' },
-    { name: 'Nhà cho thuê', path: 'nhathue' },
-    { name: 'Cho thuê căn hộ', path: 'canho' },
-    { name: 'Cho thuê mặt bằng', path: 'matbang' },
-];
+import { nav } from '../../assets/data/data';
 
 const notActive = 'hover:bg-secondary2 h-full flex items-center px-4 bg-secondary1';
 const active = 'hover:bg-secondary2 h-full flex items-center px-4 bg-secondary2 ';

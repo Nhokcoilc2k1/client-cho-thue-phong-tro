@@ -1,9 +1,9 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 const SearchItem = ({ text, IconRight, IconLeft, fontWeight, color }) => {
     return (
-        <div className="w-[100%] bg-white h-[34px] py-[6px] px-4 flex items-center md:basis-1/5 rounded text-text text-sm cursor-pointer ">
-            <span className="mr-1 text-base text-icon ">{IconLeft}</span>
+        <div className="w-[100%] bg-white h-[34px] py-[6px] px-4 flex items-center rounded text-text text-sm ">
+            <span className="mr-1 text-base text-icon ">{<IconLeft />}</span>
             <span
                 className={
                     fontWeight
@@ -13,7 +13,7 @@ const SearchItem = ({ text, IconRight, IconLeft, fontWeight, color }) => {
             >
                 {text}
             </span>
-            <span className={color ? 'ml-auto #333' : 'ml-auto text-icon '}>{IconRight}</span>
+            <span className={color ? 'ml-auto #333' : 'ml-auto text-icon '}>{<IconRight />}</span>
         </div>
     );
 };

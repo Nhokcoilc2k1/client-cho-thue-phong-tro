@@ -5,17 +5,19 @@ const notActive =
     'flex items-center py-2 px-3.5 md:py-3.5 md:px-[18px] text-text bg-white hover:bg-gray-200 rounded select-none ';
 const active = 'flex items-center py-2 px-3.5 md:py-3.5 md:px-[18px] bg-[#e13427] text-white rounded select-none ';
 
-const PageNumber = ({ page, text, iconLeft, iconRight, currentPage, setCurrentPage, className }) => {
+const PageNumber = ({ page, text, iconLeft, iconRight, currentPage, setCurrentPage, className, type }) => {
     const navigate = useNavigate();
     const handleChangePAge = () => {
         if (!(page === '...')) {
-            setCurrentPage(+page);
-            navigate({
-                pathname: '/',
-                search: createSearchParams({
-                    page: page,
-                }).toString(),
-            });
+            if (!type) {
+                setCurrentPage(+page);
+                navigate({
+                    pathname: '/',
+                    search: createSearchParams({
+                        page: page,
+                    }).toString(),
+                });
+            }
         }
     };
     return (

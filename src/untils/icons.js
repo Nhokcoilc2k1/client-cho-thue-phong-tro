@@ -19,6 +19,8 @@ import { MdOutlineStarPurple500 } from 'react-icons/md';
 import { PiHeartStraightFill, PiHeartStraightLight } from 'react-icons/pi';
 import { FaAnglesLeft, FaAnglesRight, FaPhone } from 'react-icons/fa6';
 import { SiZalo } from 'react-icons/si';
+import { GoArrowLeft } from "react-icons/go";
+
 
 const icons = {
     IoMdHeartEmpty,
@@ -45,6 +47,7 @@ const icons = {
     FaAnglesRight,
     FaPhone,
     SiZalo,
+    GoArrowLeft,
 };
 
 export default icons;
