@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import icons from '../untils/icons';
 import Button from './Button';
 
 const { GoArrowLeft } = icons;
 
-const Modal = ({ setIsShowModal, content, name }) => {
+const Modal = ({ setIsShowModal, content, name, title, queries, handleSubmit }) => {
     const [percent1, setPercent1] = useState(0);
     const [percent2, setPercent2] = useState(100);
     const [activeEl, setActiveEl] = useState('');
 
     useEffect(() => {
-        if (name === 'Chọn giá' || name === 'Chọn diện tích') {
+        if (name === 'price' || name === 'area') {
             const activeTrackEl = document.getElementById('track-active');
             if (percent2 <= percent1) {
                 activeTrackEl.style.left = `${percent2}%`;
@@ -35,15 +35,15 @@ const Modal = ({ setIsShowModal, content, name }) => {
         activeEl && setActiveEl('');
     };
 
-    const convert100toTarget = (percent) => {
-        return name === 'Chọn giá'
+    const convert100ToTarget = (percent) => {
+        return name === 'price'
             ? (Math.ceil(Math.round(+percent * 1.5) / 5) * 5) / 10
-            : name === 'Chọn diện tích'
+            : name === 'area'
             ? Math.ceil(Math.round(+percent * 0.9) / 5) * 5
             : 0;
     };
-    const convert15to100 = (percent) => {
-        let target = name === 'Chọn giá' ? 15 : name === 'Chọn diện tích' ? 90 : 1;
+    const convertTo100 = (percent) => {
+        let target = name === 'price' ? 15 : name === 'area' ? 90 : 1;
         return Math.floor((percent / target) * 100);
     };
 
@@ -56,31 +56,24 @@ const Modal = ({ setIsShowModal, content, name }) => {
     const handlePrice = (code, string) => {
         setActiveEl(code);
         let arrMaxMin = getNumber(string);
-        console.log(arrMaxMin);
         if (arrMaxMin.length === 1) {
             if (+arrMaxMin[0] === 1) {
                 setPercent1(0);
-                setPercent2(convert15to100(1));
-                console.log(convert15to100(1));
+                setPercent2(convertTo100(1));
+                console.log(convertTo100(1));
             }
             if (+arrMaxMin[0] === 20) {
                 setPercent1(0);
-                setPercent2(convert15to100(20));
+                setPercent2(convertTo100(20));
             }
             if (+arrMaxMin[0] === 15 || +arrMaxMin === 90) {
                 setPercent1(100);
                 setPercent2(100);
             }
         } else if (arrMaxMin.length === 2) {
-            setPercent1(convert15to100(arrMaxMin[0]));
-            setPercent2(convert15to100(arrMaxMin[1]));
+            setPercent1(convertTo100(arrMaxMin[0]));
+            setPercent2(convertTo100(arrMaxMin[1]));
         }
-        console.log(percent1, percent2);
-    };
-
-    const handleSubmit = () => {
-        console.log('start', convert100toTarget(percent1));
-        console.log('start', convert100toTarget(percent2));
     };
 
     return (
@@ -107,16 +100,23 @@ const Modal = ({ setIsShowModal, content, name }) => {
                     >
                         <GoArrowLeft size="30" />
                     </span>
-                    <h4 className="w-full uppercase text-text text-sm text-center font-semibold">{name}</h4>
+                    <h4 className="w-full uppercase text-text text-sm text-center font-semibold">{title}</h4>
                 </div>
-                {(name === 'Chọn loại bất động sản' || name === 'Chọn tỉnh thành') && (
+                {(name === 'category' || name === 'province') && (
                     <div className="py-2.5 px-6">
                         {content?.map((item, index) => (
                             <div
                                 key={index}
-                                className="flex items-center py-3 pr-2.5 text-sm border-b border-borderContent"
+                                className="flex items-center py-3 pr-2.5 text-sm border-b border-borderContent "
                             >
-                                <input type="radio" name={name} value={item.id} id={index} />
+                                <input
+                                    type="radio"
+                                    name={name}
+                                    value={item.id}
+                                    id={index}
+                                    checked={item.id === queries[`${name}Code`] ? true : false}
+                                    onChange={(e) => handleSubmit(e, { [name]: item.name, [`${name}Code`]: item.id })}
+                                />
                                 <label htmlFor={index} className="ml-2">
                                     {item.name}
                                 </label>
@@ -124,20 +124,24 @@ const Modal = ({ setIsShowModal, content, name }) => {
                         ))}
                     </div>
                 )}
-                {(name === 'Chọn giá' || name === 'Chọn diện tích') && (
+                {(name === 'price' || name === 'area') && (
                     <>
                         <div className="px-8 pb-12 pt-20">
                             <div className="flex flex-col items-center relative">
                                 <div className="absolute z-10 -top-14 text-lg font-semibold text-orange-500">
-                                    {`Từ ${
-                                        percent1 <= percent2
-                                            ? convert100toTarget(percent1)
-                                            : convert100toTarget(percent2)
-                                    } - ${
-                                        percent2 >= percent1
-                                            ? convert100toTarget(percent2)
-                                            : convert100toTarget(percent1)
-                                    } ${name === 'Chọn giá' ? 'triệu ' : name === 'Chọn diện tích' ? ' m2' : ''} `}
+                                    {percent1 === 100 && percent2 === 100
+                                        ? `Trên ${convert100ToTarget(percent1)} ${
+                                              name === 'price' ? 'triệu +' : 'm2 +'
+                                          }`
+                                        : `Từ ${
+                                              percent1 <= percent2
+                                                  ? convert100ToTarget(percent1)
+                                                  : convert100ToTarget(percent2)
+                                          } - ${
+                                              percent2 >= percent1
+                                                  ? convert100ToTarget(percent2)
+                                                  : convert100ToTarget(percent1)
+                                          } ${name === 'price' ? 'triệu ' : ' m2'} `}
                                 </div>
                                 <div
                                     id="track"
@@ -190,11 +194,7 @@ const Modal = ({ setIsShowModal, content, name }) => {
                                             setPercent2(100);
                                         }}
                                     >
-                                        {name === 'Chọn giá'
-                                            ? '15 triệu +'
-                                            : name === 'Chọn diện tích'
-                                            ? 'Trên 90 m2'
-                                            : ''}
+                                        {name === 'price' ? '15 triệu +' : name === 'area' ? 'Trên 90 m2' : ''}
                                     </span>
                                 </div>
                             </div>

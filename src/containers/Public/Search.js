@@ -11,22 +11,34 @@ const Search = () => {
     const [isShowModal, setIsShowModal] = useState(false);
     const [content, setContent] = useState([]);
     const [name, setName] = useState('');
+    const [title, setTitle] = useState('');
+    const [queries, setQueries] = useState({});
 
-    const handleShowModal = useCallback((content, name) => {
+    const handleShowModal = useCallback((content, title, name) => {
         setContent(content);
+        setTitle(title);
         setName(name);
         setIsShowModal(true);
     }, []);
+
+    const handleSubmit = (e, query) => {
+        e.stopPropagation();
+        setQueries((prev) => ({ ...prev, ...query }));
+        setIsShowModal(false);
+    };
+
+    console.log(queries);
 
     return (
         <>
             <div className="flex flex-col bg-primary2 w-full mt-2 md:flex-row md:bg-bgSearch min-h-[55px] lg:w-984 xl:w-1120 p-[10px] items-center md:justify-between gap-2 md:rounded-lg ">
                 <span
-                    onClick={() => handleShowModal(nav, 'Chọn loại bất động sản')}
+                    onClick={() => handleShowModal(nav, 'Chọn loại bất động sản', 'category')}
                     className="w-full block md:flex-1 cursor-pointer "
                 >
                     <SearchItem
-                        text="Phòng trọ, nhà trọ"
+                        text={queries.category}
+                        defaultText="Phòng trọ, nhà trọ"
                         IconRight={RiDeleteBack2Line}
                         IconLeft={MdHouseSiding}
                         fontWeight
@@ -34,22 +46,37 @@ const Search = () => {
                     />
                 </span>
                 <span
-                    onClick={() => handleShowModal(province, 'Chọn tỉnh thành')}
+                    onClick={() => handleShowModal(province, 'Chọn tỉnh thành', 'province')}
                     className="w-full block md:flex-1 cursor-pointer "
                 >
-                    <SearchItem text="Toàn quốc" IconRight={GrNext} IconLeft={CiLocationOn} />
+                    <SearchItem
+                        text={queries.province}
+                        defaultText="Toàn quốc"
+                        IconRight={GrNext}
+                        IconLeft={CiLocationOn}
+                    />
                 </span>
                 <span
-                    onClick={() => handleShowModal(filterPrice, 'Chọn giá')}
+                    onClick={() => handleShowModal(filterPrice, 'Chọn giá', 'price')}
                     className="w-full block md:flex-1 cursor-pointer "
                 >
-                    <SearchItem text="Chọn giá" IconRight={GrNext} IconLeft={LiaMoneyBillWaveSolid} />
+                    <SearchItem
+                        text={queries.price}
+                        defaultText="Chọn giá"
+                        IconRight={GrNext}
+                        IconLeft={LiaMoneyBillWaveSolid}
+                    />
                 </span>
                 <span
-                    onClick={() => handleShowModal(filterAre, 'Chọn diện tích')}
+                    onClick={() => handleShowModal(filterAre, 'Chọn diện tích', 'area')}
                     className="w-full block md:flex-1 cursor-pointer "
                 >
-                    <SearchItem text="Chọn diện tích" IconRight={GrNext} IconLeft={LiaCropSolid} />
+                    <SearchItem
+                        text={queries.are}
+                        defaultText="Chọn diện tích"
+                        IconRight={GrNext}
+                        IconLeft={LiaCropSolid}
+                    />
                 </span>
                 <button className="w-[100%] bg-bgSearch text-text md:flex-1 md:bg-secondary1 md:text-white h-[34px] flex items-center justify-center gap-1 py-2 px-4 rounded  text-sm font-semibold">
                     <span className="text-lg">
@@ -58,7 +85,17 @@ const Search = () => {
                     Tìm kiếm
                 </button>
             </div>
-            {isShowModal && <Modal name={name} content={content} setIsShowModal={setIsShowModal} type />}
+            {isShowModal && (
+                <Modal
+                    name={name}
+                    title={title}
+                    content={content}
+                    queries={queries}
+                    handleSubmit={handleSubmit}
+                    setIsShowModal={setIsShowModal}
+                    type
+                />
+            )}
         </>
     );
 };
