@@ -13,6 +13,7 @@ const Search = () => {
     const [name, setName] = useState('');
     const [title, setTitle] = useState('');
     const [queries, setQueries] = useState({});
+    const [arrMinMax, setArrMinMax] = useState({});
 
     const handleShowModal = useCallback((content, title, name) => {
         setContent(content);
@@ -21,13 +22,21 @@ const Search = () => {
         setIsShowModal(true);
     }, []);
 
-    const handleSubmit = (e, query) => {
+    const handleSubmit = useCallback((e, query, arrMinMax) => {
         e.stopPropagation();
         setQueries((prev) => ({ ...prev, ...query }));
         setIsShowModal(false);
-    };
+        arrMinMax && setArrMinMax((prev) => ({ ...prev, ...arrMinMax }));
+    }, []);
 
-    console.log(queries);
+    const handleSearch = () => {
+        const queryCode = Object.entries(queries).filter((item) => item[0].includes('Code'));
+        let queryCodeObj = {};
+        queryCode.forEach((item) => {
+            queryCodeObj[item[0]] = item[1];
+        });
+        console.log(queryCodeObj);
+    };
 
     return (
         <>
@@ -72,13 +81,16 @@ const Search = () => {
                     className="w-full block md:flex-1 cursor-pointer "
                 >
                     <SearchItem
-                        text={queries.are}
+                        text={queries.area}
                         defaultText="Chọn diện tích"
                         IconRight={GrNext}
                         IconLeft={LiaCropSolid}
                     />
                 </span>
-                <button className="w-[100%] bg-bgSearch text-text md:flex-1 md:bg-secondary1 md:text-white h-[34px] flex items-center justify-center gap-1 py-2 px-4 rounded  text-sm font-semibold">
+                <button
+                    onClick={handleSearch}
+                    className="w-[100%] bg-bgSearch text-text md:flex-1 md:bg-secondary1 md:text-white h-[34px] flex items-center justify-center gap-1 py-2 px-4 rounded  text-sm font-semibold"
+                >
                     <span className="text-lg">
                         <IoSearch />
                     </span>
@@ -91,6 +103,7 @@ const Search = () => {
                     title={title}
                     content={content}
                     queries={queries}
+                    arrMinMax={arrMinMax}
                     handleSubmit={handleSubmit}
                     setIsShowModal={setIsShowModal}
                     type

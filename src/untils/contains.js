@@ -36,62 +36,62 @@ export const localtion = [
 
 export const filterPrice = [
     {
-        id: 1,
+        code: 1,
         name: 'Dưới 1 triệu',
     },
     {
-        id: 2,
+        code: 2,
         name: 'Từ 1 - 2 triệu',
     },
     {
-        id: 3,
+        code: 3,
         name: 'Từ 2 - 3 triệu',
     },
     {
-        id: 4,
+        code: 4,
         name: 'Từ 3 - 5 triệu',
     },
     {
-        id: 5,
+        code: 5,
         name: 'Từ 5 - 7 triệu',
     },
     {
-        id: 6,
+        code: 6,
         name: 'Từ 7 - 10 triệu',
     },
     {
-        id: 7,
+        code: 7,
         name: 'Từ 10 - 15 triệu',
     },
     {
-        id: 8,
+        code: 8,
         name: 'Trên 15 triệu',
     },
 ];
 
 export const filterAre = [
     {
-        id: 1,
+        code: 1,
         name: 'Dưới 20 m2',
     },
     {
-        id: 2,
+        code: 2,
         name: 'Từ 20 - 30 m2',
     },
     {
-        id: 3,
+        code: 3,
         name: 'Từ 30 - 50 m2',
     },
     {
-        id: 4,
+        code: 4,
         name: 'Từ 50 - 70 m2',
     },
     {
-        id: 5,
+        code: 5,
         name: 'Từ 70 - 90 m2',
     },
     {
-        id: 6,
+        code: 6,
         name: 'Trên 90 m2',
     },
 ];

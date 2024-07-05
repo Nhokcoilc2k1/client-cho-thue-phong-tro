@@ -1,12 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import icons from '../untils/icons';
 import Button from './Button';
+import { getNumberPrice } from '../untils/Common/getNumber';
+import { getCodes } from '../untils/Common/getCode';
 
 const { GoArrowLeft } = icons;
 
-const Modal = ({ setIsShowModal, content, name, title, queries, handleSubmit }) => {
-    const [percent1, setPercent1] = useState(0);
-    const [percent2, setPercent2] = useState(100);
+const Modal = ({ setIsShowModal, content, name, title, queries, arrMinMax, handleSubmit }) => {
+    const [percent1, setPercent1] = useState(
+        name === 'price' && arrMinMax?.priceArr
+            ? arrMinMax?.priceArr[0]
+            : name === 'area' && arrMinMax?.areaArr
+            ? arrMinMax?.areaArr[0]
+            : 0,
+    );
+    const [percent2, setPercent2] = useState(
+        name === 'price' && arrMinMax?.priceArr
+            ? arrMinMax?.priceArr[1]
+            : name === 'area' && arrMinMax?.areaArr
+            ? arrMinMax?.areaArr[1]
+            : 100,
+    );
     const [activeEl, setActiveEl] = useState('');
 
     useEffect(() => {
@@ -47,15 +61,9 @@ const Modal = ({ setIsShowModal, content, name, title, queries, handleSubmit }) 
         return Math.floor((percent / target) * 100);
     };
 
-    const getNumber = (string) => {
-        let arr = string.split(' ');
-        let output = arr.filter((item) => !isNaN(item));
-        return output;
-    };
-
     const handlePrice = (code, string) => {
         setActiveEl(code);
-        let arrMaxMin = getNumber(string);
+        let arrMaxMin = getNumberPrice(string);
         if (arrMaxMin.length === 1) {
             if (+arrMaxMin[0] === 1) {
                 setPercent1(0);
@@ -74,6 +82,22 @@ const Modal = ({ setIsShowModal, content, name, title, queries, handleSubmit }) 
             setPercent1(convertTo100(arrMaxMin[0]));
             setPercent2(convertTo100(arrMaxMin[1]));
         }
+    };
+
+    const handleBeforeSubmit = (e) => {
+        const gaps = getCodes([convert100ToTarget(percent1), convert100ToTarget(percent2)], content);
+        handleSubmit(
+            e,
+            {
+                [`${name}Code`]: gaps.map((item) => item.code),
+                [name]: `${convert100ToTarget(percent1)} - ${convert100ToTarget(percent2)}${
+                    name === 'price' ? ' triệu' : 'm2'
+                }`,
+            },
+            {
+                [`${name}Arr`]: [percent1, percent2],
+            },
+        );
     };
 
     return (
@@ -112,10 +136,10 @@ const Modal = ({ setIsShowModal, content, name, title, queries, handleSubmit }) 
                                 <input
                                     type="radio"
                                     name={name}
-                                    value={item.id}
+                                    value={item.code}
                                     id={index}
-                                    checked={item.id === queries[`${name}Code`] ? true : false}
-                                    onChange={(e) => handleSubmit(e, { [name]: item.name, [`${name}Code`]: item.id })}
+                                    checked={item.code === queries[`${name}Code`] ? true : false}
+                                    onChange={(e) => handleSubmit(e, { [name]: item.name, [`${name}Code`]: item.code })}
                                 />
                                 <label htmlFor={index} className="ml-2">
                                     {item.name}
@@ -205,9 +229,9 @@ const Modal = ({ setIsShowModal, content, name, title, queries, handleSubmit }) 
                                 {content?.map((item, index) => (
                                     <Button
                                         key={index}
-                                        onClick={() => handlePrice(item.id, item.name)}
+                                        onClick={() => handlePrice(item.code, item.name)}
                                         className={`px-4 py-1 bg-[#f1f1f1] text-sm rounded-md cursor-pointer ${
-                                            item.id === activeEl ? 'bg-blue-500 text-white' : ''
+                                            item.code === activeEl ? 'bg-blue-500 text-white' : ''
                                         }`}
                                         text={item.name}
                                     />
@@ -216,7 +240,7 @@ const Modal = ({ setIsShowModal, content, name, title, queries, handleSubmit }) 
                         </div>
                         <Button
                             text="Áp dụng"
-                            onClick={() => handleSubmit()}
+                            onClick={handleBeforeSubmit}
                             className="w-full mt-16 h-[50px] bg-[#ffa500] uppercase font-semibold text-sm rounded-none rounded-b-lg cursor-pointer"
                         />
                     </>
@@ -226,4 +250,4 @@ const Modal = ({ setIsShowModal, content, name, title, queries, handleSubmit }) 
     );
 };
 
-export default Modal;
+export default memo(Modal);

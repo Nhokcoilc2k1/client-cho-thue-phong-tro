@@ -82,10 +82,10 @@ export const dataPost = [
 ];
 
 export const nav = [
-    { name: 'Cho thuê phòng trọ', path: 'chothue' },
-    { name: 'Nhà cho thuê', path: 'nhathue' },
-    { name: 'Cho thuê căn hộ', path: 'canho' },
-    { name: 'Cho thuê mặt bằng', path: 'matbang' },
+    { name: 'Cho thuê phòng trọ', path: 'chothue', code: 1 },
+    { name: 'Nhà cho thuê', path: 'nhathue', code: 2 },
+    { name: 'Cho thuê căn hộ', path: 'canho', code: 3 },
+    { name: 'Cho thuê mặt bằng', path: 'matbang', code: 4 },
 ];
 
 export const dataNewPost = [
@@ -110,11 +110,9 @@ export const dataNewPost = [
 ];
 
 export const province = [
-    { id: 1, name: 'TP HCM' },
-    { id: 2, name: 'Hà Nội' },
-    { id: 3, name: 'Đà Nẵng' },
-    { id: 4, name: 'Hải Phòng' },
-    { id: 5, name: 'Bắc Ninh' },
+    { code: 1, name: 'TP HCM' },
+    { code: 2, name: 'Hà Nội' },
+    { code: 3, name: 'Đà Nẵng' },
+    { code: 4, name: 'Hải Phòng' },
+    { code: 5, name: 'Bắc Ninh' },
 ];
-
-
