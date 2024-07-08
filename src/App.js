@@ -9,6 +9,7 @@ import {
     RentalHouse,
     RentalRoom,
     RentalSpace,
+    SearchDetail,
 } from './containers/Public';
 import { path } from './untils/contains';
 
@@ -26,6 +27,7 @@ function App() {
                     <Route path={path.CHO_THUE_MAT_BANG} element={<RentalSpace />} />
                     <Route path={path.NHA_CHO_THUE} element={<RentalRoom />} />
                     <Route path={path.DETAIL_POST_TITLE_POSTID} element={<DetailPost />} />
+                    <Route path={path.SEARCH} element={<SearchDetail />} />
                 </Route>
             </Routes>
         </div>

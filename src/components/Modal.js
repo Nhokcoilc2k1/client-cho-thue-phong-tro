@@ -6,7 +6,7 @@ import { getCodes } from '../untils/Common/getCode';
 
 const { GoArrowLeft } = icons;
 
-const Modal = ({ setIsShowModal, content, name, title, queries, arrMinMax, handleSubmit }) => {
+const Modal = ({ setIsShowModal, content, name, title, queries, arrMinMax, defaultText, handleSubmit }) => {
     const [percent1, setPercent1] = useState(
         name === 'price' && arrMinMax?.priceArr
             ? arrMinMax?.priceArr[0]
@@ -85,14 +85,16 @@ const Modal = ({ setIsShowModal, content, name, title, queries, arrMinMax, handl
     };
 
     const handleBeforeSubmit = (e) => {
-        const gaps = getCodes([convert100ToTarget(percent1), convert100ToTarget(percent2)], content);
+        let arrMinMax =
+            percent1 < percent2
+                ? [convert100ToTarget(percent1), convert100ToTarget(percent2)]
+                : [convert100ToTarget(percent2), convert100ToTarget(percent1)];
+        const gaps = getCodes(arrMinMax, content);
         handleSubmit(
             e,
             {
                 [`${name}Code`]: gaps.map((item) => item.code),
-                [name]: `${convert100ToTarget(percent1)} - ${convert100ToTarget(percent2)}${
-                    name === 'price' ? ' triệu' : 'm2'
-                }`,
+                [name]: `${arrMinMax.join('-')}${name === 'price' ? ' triệu' : 'm2'}`,
             },
             {
                 [`${name}Arr`]: [percent1, percent2],
@@ -112,7 +114,7 @@ const Modal = ({ setIsShowModal, content, name, title, queries, arrMinMax, handl
                     e.stopPropagation();
                     setIsShowModal(true);
                 }}
-                className=" w-2/5 mx-auto mt-20 bg-white rounded-lg "
+                className=" w-2/5 h-[500px] relative mx-auto mt-20 bg-white rounded-lg "
             >
                 <div className="h-[45px] relative flex items-center border-b border-borderContent">
                     <span
@@ -128,6 +130,18 @@ const Modal = ({ setIsShowModal, content, name, title, queries, arrMinMax, handl
                 </div>
                 {(name === 'category' || name === 'province') && (
                     <div className="py-2.5 px-6">
+                        <div className="flex items-center py-3 pr-2.5 text-sm border-b border-borderContent ">
+                            <input
+                                type="radio"
+                                name={name}
+                                id="default"
+                                checked={!queries[`${name}Code`] ? true : false}
+                                onChange={(e) => handleSubmit(e, { [name]: defaultText, [`${name}Code`]: null })}
+                            />
+                            <label htmlFor="default" className="ml-2">
+                                {defaultText}
+                            </label>
+                        </div>
                         {content?.map((item, index) => (
                             <div
                                 key={index}
@@ -241,7 +255,7 @@ const Modal = ({ setIsShowModal, content, name, title, queries, arrMinMax, handl
                         <Button
                             text="Áp dụng"
                             onClick={handleBeforeSubmit}
-                            className="w-full mt-16 h-[50px] bg-[#ffa500] uppercase font-semibold text-sm rounded-none rounded-b-lg cursor-pointer"
+                            className="w-full mt-16 h-[50px] absolute bottom-0 bg-[#ffa500] uppercase font-semibold text-sm rounded-none rounded-b-lg cursor-pointer"
                         />
                     </>
                 )}

@@ -17,7 +17,7 @@ const Pagination = ({ totalCount, pageNumber }) => {
                 page={Math.max(+pageNumber - 1, 1)}
                 setCurrentPage={setCurrentPage}
                 iconLeft={<FaAnglesLeft color="#333" size="9" />}
-                className="hidden sm:flex"
+                className="hidden sm:flex "
                 type={+pageNumber === 1 ? true : false}
             />
             {pagination.map((item, index) => (
@@ -32,7 +32,7 @@ const Pagination = ({ totalCount, pageNumber }) => {
                 }
                 page={maxPage}
                 setCurrentPage={setCurrentPage}
-                className={`${+pageNumber === maxPage ? 'cursor-text' : ''}`}
+                className={`${+pageNumber === maxPage ? 'cursor-text' : ''} hidden md:flex lg:hidden xl:flex`}
                 type={+pageNumber === maxPage ? true : false}
             />
             <PageNumber
@@ -40,7 +40,7 @@ const Pagination = ({ totalCount, pageNumber }) => {
                 page={Math.min(+pageNumber + 1, maxPage)}
                 setCurrentPage={setCurrentPage}
                 iconRight={<FaAnglesRight color="#333" size="9" />}
-                className={`${+pageNumber === maxPage ? 'cursor-text' : ''} hidden sm:flex`}
+                className={`${+pageNumber === maxPage ? 'cursor-text' : ''} hidden sm:flex  `}
                 type={+pageNumber === maxPage ? true : false}
             />
         </div>

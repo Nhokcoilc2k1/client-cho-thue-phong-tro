@@ -1,9 +1,10 @@
 import { useCallback, useState } from 'react';
 import SearchItem from '../../components/SearchItem';
 import icons from '../../untils/icons';
+import { useNavigate, createSearchParams } from 'react-router-dom';
 import { Modal } from '../../components';
 import { nav, province } from '../../assets/data/data';
-import { filterAre, filterPrice } from '../../untils/contains';
+import { filterAre, filterPrice, path } from '../../untils/contains';
 
 const { CiLocationOn, LiaCropSolid, MdHouseSiding, LiaMoneyBillWaveSolid, IoSearch, GrNext, RiDeleteBack2Line } = icons;
 
@@ -14,11 +15,14 @@ const Search = () => {
     const [title, setTitle] = useState('');
     const [queries, setQueries] = useState({});
     const [arrMinMax, setArrMinMax] = useState({});
+    const [defaultText, setDefaultText] = useState('');
+    const navigate = useNavigate();
 
-    const handleShowModal = useCallback((content, title, name) => {
+    const handleShowModal = useCallback((content, title, name, defaultText) => {
         setContent(content);
         setTitle(title);
         setName(name);
+        setDefaultText(defaultText);
         setIsShowModal(true);
     }, []);
 
@@ -30,10 +34,17 @@ const Search = () => {
     }, []);
 
     const handleSearch = () => {
-        const queryCode = Object.entries(queries).filter((item) => item[0].includes('Code'));
+        const queryCode = Object.entries(queries)
+            .filter((item) => item[0].includes('Code'))
+            .filter((item) => !item[1] === false);
         let queryCodeObj = {};
         queryCode.forEach((item) => {
             queryCodeObj[item[0]] = item[1];
+        });
+        //Gọi api sau đó điều hướng
+        navigate({
+            pathname: path.SEARCH,
+            search: createSearchParams(queryCodeObj).toString(),
         });
         console.log(queryCodeObj);
     };
@@ -42,7 +53,7 @@ const Search = () => {
         <>
             <div className="flex flex-col bg-primary2 w-full mt-2 md:flex-row md:bg-bgSearch min-h-[55px] lg:w-984 xl:w-1120 p-[10px] items-center md:justify-between gap-2 md:rounded-lg ">
                 <span
-                    onClick={() => handleShowModal(nav, 'Chọn loại bất động sản', 'category')}
+                    onClick={() => handleShowModal(nav, 'Chọn loại bất động sản', 'category', 'Phòng trọ, nhà trọ')}
                     className="w-full block md:flex-1 cursor-pointer "
                 >
                     <SearchItem
@@ -55,7 +66,7 @@ const Search = () => {
                     />
                 </span>
                 <span
-                    onClick={() => handleShowModal(province, 'Chọn tỉnh thành', 'province')}
+                    onClick={() => handleShowModal(province, 'Chọn tỉnh thành', 'province', 'Toàn quốc')}
                     className="w-full block md:flex-1 cursor-pointer "
                 >
                     <SearchItem
@@ -66,7 +77,7 @@ const Search = () => {
                     />
                 </span>
                 <span
-                    onClick={() => handleShowModal(filterPrice, 'Chọn giá', 'price')}
+                    onClick={() => handleShowModal(filterPrice, 'Chọn giá', 'price', 'Chọn giá')}
                     className="w-full block md:flex-1 cursor-pointer "
                 >
                     <SearchItem
@@ -77,7 +88,7 @@ const Search = () => {
                     />
                 </span>
                 <span
-                    onClick={() => handleShowModal(filterAre, 'Chọn diện tích', 'area')}
+                    onClick={() => handleShowModal(filterAre, 'Chọn diện tích', 'area', 'Chọn diện tích')}
                     className="w-full block md:flex-1 cursor-pointer "
                 >
                     <SearchItem
@@ -106,7 +117,7 @@ const Search = () => {
                     arrMinMax={arrMinMax}
                     handleSubmit={handleSubmit}
                     setIsShowModal={setIsShowModal}
-                    type
+                    defaultText={defaultText}
                 />
             )}
         </>

@@ -1,9 +1,8 @@
 import React from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 
-const notActive =
-    'flex items-center py-2 px-3.5 md:py-3.5 md:px-[18px] text-text bg-white hover:bg-gray-200 rounded select-none ';
-const active = 'flex items-center py-2 px-3.5 md:py-3.5 md:px-[18px] bg-[#e13427] text-white rounded select-none ';
+const notActive = 'flex items-center py-3.5 px-[18px] text-text bg-white hover:bg-gray-200 rounded select-none ';
+const active = 'flex items-center py-3.5 px-[18px] bg-[#e13427] text-white rounded select-none ';
 
 const PageNumber = ({ page, text, iconLeft, iconRight, currentPage, setCurrentPage, className, type }) => {
     const navigate = useNavigate();
