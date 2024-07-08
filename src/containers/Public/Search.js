@@ -1,7 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import SearchItem from '../../components/SearchItem';
 import icons from '../../untils/icons';
-import { useNavigate, createSearchParams } from 'react-router-dom';
+import { useNavigate, createSearchParams, useLocation } from 'react-router-dom';
 import { Modal } from '../../components';
 import { nav, province } from '../../assets/data/data';
 import { filterAre, filterPrice, path } from '../../untils/contains';
@@ -17,6 +17,14 @@ const Search = () => {
     const [arrMinMax, setArrMinMax] = useState({});
     const [defaultText, setDefaultText] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (!location.pathname.includes(path.SEARCH)) {
+            setArrMinMax({});
+            setQueries({});
+        }
+    }, [location]);
 
     const handleShowModal = useCallback((content, title, name, defaultText) => {
         setContent(content);
@@ -38,14 +46,31 @@ const Search = () => {
             .filter((item) => item[0].includes('Code'))
             .filter((item) => !item[1] === false);
         let queryCodeObj = {};
-        queryCode.forEach((item) => {
-            queryCodeObj[item[0]] = item[1];
-        });
+        queryCode.forEach((item) => (queryCodeObj[item[0]] = item[1]));
+
+        const queryText = Object.entries(queries).filter((item) => !item[0].includes('Code'));
+        const queryTextObj = {};
+        queryText.forEach((item) => (queryTextObj[item[0]] = item[1]));
+        let titleSearch = `${queryTextObj.category ? queryTextObj.category : 'Cho thuê tất cả'} ${
+            queryTextObj.province ? `tỉnh ${queryTextObj.province}` : ''
+        } ${
+            queryTextObj.price
+                ? `giá từ ${queryTextObj.price.split('-')[0]} đến ${queryTextObj.price.split('-')[1]}`
+                : ''
+        } ${
+            queryTextObj.area
+                ? `diện tích từ ${queryTextObj.area.split('-')[0]}m2 đến ${queryTextObj.area.split('-')[1]}`
+                : ''
+        }`;
+
         //Gọi api sau đó điều hướng
-        navigate({
-            pathname: path.SEARCH,
-            search: createSearchParams(queryCodeObj).toString(),
-        });
+        navigate(
+            {
+                pathname: path.SEARCH,
+                search: createSearchParams(queryCodeObj).toString(),
+            },
+            { state: titleSearch },
+        );
         console.log(queryCodeObj);
     };
 
